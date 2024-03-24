@@ -1,0 +1,104 @@
+
+using System;
+using System.Collections.Generic;
+
+public class Process
+{
+    // Properties of the Process class representing key attributes of a process
+    public int Id { get; set; }
+    public int ArrivalTime { get; set; }
+    public int BurstTime { get; set; }
+    public int Priority { get; set; }
+}
+
+public class NonPreemptivePriorityScheduler
+{
+    public static void Main()
+    {
+        List<Process> processes = new List<Process>()
+        {
+            new Process { Id = 1, ArrivalTime = 2, BurstTime = 9, Priority = 3 },
+            new Process { Id = 2, ArrivalTime = 3, BurstTime = 2, Priority = 1 },
+            new Process { Id = 3, ArrivalTime = 0, BurstTime = 5, Priority = 2 },
+            new Process { Id = 4, ArrivalTime = 1, BurstTime = 4, Priority = 4 },
+            new Process { Id = 5, ArrivalTime = 14, BurstTime = 10, Priority = 5 }
+        };
+
+        NonPreemptivePriorityScheduling(processes);
+    }
+
+    public static void NonPreemptivePriorityScheduling(List<Process> processes)
+    {
+        int currentTime = 0;
+        int originalLength = processes.Count;
+        int turnAroundTime = 0;
+        int waitingTime = 0;
+
+        // Initializing a list to track the processes that are currently in execution
+        List<Process> currentProcess = new List<Process>();
+
+        // Sorting the processes based on their arrival time to determine scheduling order
+        processes.Sort((p1, p2) => p1.ArrivalTime.CompareTo(p2.ArrivalTime));
+
+        // Adding the first process (with the shortest arrival time) to the list of current processes
+        currentProcess.Add(processes[0]);
+
+
+        currentTime += currentProcess[0].BurstTime;
+        turnAroundTime = currentTime - currentProcess[0].ArrivalTime;
+        waitingTime = turnAroundTime - currentProcess[0].BurstTime;
+
+        // Removing the selected process from the list of all processes
+        processes.RemoveAt(0);
+
+        // Iterating through the remaining processes to schedule them
+        for (int i = 0; i < originalLength - 1; i++)
+        {
+            // Finding processes that are eligible for execution at the current time
+            List<Process> eligibleProcesses = new List<Process>();
+
+            foreach (var process in processes)
+            {
+                // Checking if the process has arrived by the current time
+                if (currentTime >= process.ArrivalTime)
+                {
+                    eligibleProcesses.Add(process);
+                }
+            }
+
+            // Sorting eligible processes based on their priority 
+            eligibleProcesses.Sort((p1, p2) => p1.Priority.CompareTo(p2.Priority));
+
+            // If there are eligible processes for execution
+            if (eligibleProcesses.Count > 0)
+            {
+                // Adding the process with high priority to the list of current processes
+                currentProcess.Add(eligibleProcesses[0]);
+
+                // Updating the total time elapsed by adding the burst time of the selected process
+                currentTime += eligibleProcesses[0].BurstTime;
+                
+
+                // Removing the selected process from the list of all processes
+                processes.Remove(eligibleProcesses[0]);
+            }
+        }
+        int completionTime = 0;
+        Console.WriteLine("Processes\t" + "Arrival Time\t" + "Burst time\t" +"Priority\t"+ "Turn around time\t" + "Waiting time");
+        // Displaying the order in which processes are executed
+        foreach (var process in currentProcess)
+        {
+            
+            completionTime+=process.BurstTime;
+            turnAroundTime = completionTime - process.ArrivalTime;
+            waitingTime = turnAroundTime - process.BurstTime;
+
+            Console.Write(process.Id);
+            Console.Write("\t\t" + process.ArrivalTime);
+            Console.Write("\t\t" + process.BurstTime);
+            Console.Write("\t\t" + process.Priority);
+            Console.Write("\t\t" + turnAroundTime);
+            Console.Write("\t\t\t" + waitingTime + "\n");
+        }
+    }
+}
