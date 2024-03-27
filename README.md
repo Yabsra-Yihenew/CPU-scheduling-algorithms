@@ -16,3 +16,5 @@
   This scheduling algorithm ensures that higher priority processes are executed first.
 
 3) Preemptive priority scheduling is a C# code implements preemptive priority scheduling for a set of processes. It simulates process execution by selecting the process with the       highest priority at each time step and executing it until completion.
+
+4) Round Robin scheduling C# code demonstrates the Round Robin scheduling algorithm, a preemptive scheduling method commonly used in operating systems. It iterates through processes in a cyclic manner, allocating each a fixed time quantum for execution before moving to the next process. If a process's burst time exceeds the quantum, it's temporarily suspended, allowing other processes to execute. The code calculates and displays the waiting time (time spent waiting in the ready queue) and turnaround time (total time taken from arrival to completion) for each process, along with their averages. It provides insight into how the Round Robin algorithm handles process execution, particularly in scenarios with different arrival times and burst times.
