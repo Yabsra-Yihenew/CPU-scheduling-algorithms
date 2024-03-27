@@ -14,3 +14,5 @@
   Upon completion of execution the process leaves the CPU, and the scheduler selects the next process with the highest priority from the ready queue.
   
   This scheduling algorithm ensures that higher priority processes are executed first.
+
+3) Preemptive priority scheduling is a C# code implements preemptive priority scheduling for a set of processes. It simulates process execution by selecting the process with the       highest priority at each time step and executing it until completion.
