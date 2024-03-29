@@ -67,6 +67,4 @@ df.drop_duplicates(inplace=True)
 
 
 
-#stemming contents of the comment section
-df['stemmed_content'] = df['Comment'].apply(stemming)
-print(df['stemmed_content'])
+
