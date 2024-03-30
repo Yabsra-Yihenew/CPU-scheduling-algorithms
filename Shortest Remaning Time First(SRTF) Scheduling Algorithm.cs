@@ -7,3 +7,18 @@ public class Process
     public int ArrivalTime { get; set; }   
     public int BurstTime { get; set; }     
 }
+public class SRTF
+{
+    public static void Main()
+    {
+        List<Process> processes = new List<Process>()
+        {
+            new Process { Id = 1, ArrivalTime = 2, BurstTime = 9 },
+            new Process { Id = 2, ArrivalTime = 3, BurstTime = 2 },
+            new Process { Id = 3, ArrivalTime = 0, BurstTime = 7 },
+            new Process { Id = 4, ArrivalTime = 1, BurstTime = 5 },
+            new Process { Id = 5, ArrivalTime = 14, BurstTime = 10 }
+        };
+
+        ShortestRemainingTimeFirst(processes);
+    }
