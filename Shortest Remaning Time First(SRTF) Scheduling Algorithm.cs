@@ -73,7 +73,7 @@ public class SRTF
             }
             else
             {
-                currentTime++;  
+                currentTime++;  // Incrementing time if no process is eligible for execution at the current time
             }
         }
         
