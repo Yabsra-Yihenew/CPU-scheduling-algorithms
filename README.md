@@ -8,12 +8,12 @@
 2) Non-preemptive priority scheduling is a CPU scheduling algorithm where each process is assigned a priority. 
   The CPU scheduler selects the process with the highest priority for execution. In case of ties, FCFS (First-Come, First-Served) order may be used to break the tie.
   
-  When a process enters the ready queue, it is placed according to its priority. The CPU scheduler then selects the process with 
-  the highest priority from the ready queue for execution. Once a process starts executing, it continues until it either completes its CPU burst. 
-  During this time, no other process can preempt it.
-  Upon completion of execution the process leaves the CPU, and the scheduler selects the next process with the highest priority from the ready queue.
-  
-  This scheduling algorithm ensures that higher priority processes are executed first.
+    When a process enters the ready queue, it is placed according to its priority. The CPU scheduler then selects the process with 
+    the highest priority from the ready queue for execution. Once a process starts executing, it continues until it either completes its CPU burst. 
+    During this time, no other process can preempt it.
+    Upon completion of execution the process leaves the CPU, and the scheduler selects the next process with the highest priority from the ready queue.
+    
+    This scheduling algorithm ensures that higher priority processes are executed first.
 
 3) Preemptive priority scheduling is a C# code implements preemptive priority scheduling for a set of processes. It simulates process execution by selecting the process with the       highest priority at each time step and executing it until completion.
 
